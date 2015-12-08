@@ -24,6 +24,7 @@ Tipsy::router()
 				$cmds[] = $dir.'git status -s';
 				$cmds[] = $dir.'git add -A';
 				$cmds[] = $dir.'git commit -m "Automatic dependency update for '.$package.'"';
+				$cmds[] = $dir.'git push origin master';
 			}
 			$x++;
 		}
