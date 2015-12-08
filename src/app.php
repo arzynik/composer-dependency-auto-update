@@ -48,7 +48,7 @@ Tipsy::router()
 			if (preg_match('/^GITHUB_REPO[0-9]+$/', $k)) {
 				$cmds[] = 'git clone '.$v.' /tmp/repos/'.$x;
 				$dir = 'cd /tmp/repos/'.$x.' && ';
-				$cmds[] = $dir.'composer update '.$package.' --optimize-autoloader';
+				$cmds[] = $dir.'composer update '.$package.' --optimize-autoloader --ignore-platform-reqs';
 				$cmds[] = $dir.'git status -s';
 				$cmds[] = $dir.'git add -A';
 				$cmds[] = $dir.'git commit -m "Automatic dependency update for '.$package.'"';
