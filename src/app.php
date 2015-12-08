@@ -12,6 +12,7 @@ Tipsy::router()
 		$secret = $_ENV['WEBHOOK_SECRET'] ? $_ENV['WEBHOOK_SECRET'] : $this->tipsy()->config()['update']['secret'];
 
 		if (!$package) {
+			print_r($Request);
 			echo "No PACKAGE_NAME(".$Request->repository->full_name.").\n";
 			$error = true;
 		}
@@ -27,7 +28,7 @@ Tipsy::router()
 			echo "No WEBHOOK_SECRET.\n";
 			$error = true;
 		}
-		if (sha1($secret) != $secret) {
+		if (sha1($secret) != str_replace('sha1=','',$Request->headers()['x-hub-signature'])) {
 			echo "Invalid WEBHOOK_SECRET.\n";
 			$error = true;
 		}
