@@ -29,6 +29,7 @@ Tipsy::router()
 		}
 		$sig = hash_hmac('sha1', $Request->_rawRequest, $key, false);
 		if ('sha1='.$sig != $Request->headers()['X-Hub-Signature']) {
+			print_r($Request);
 			echo $Request->_rawRequest."\n";
 			echo $sig." < secret\n";
 			echo $Request->headers()['X-Hub-Signature']." < replace\n";
