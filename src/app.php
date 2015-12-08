@@ -27,9 +27,9 @@ Tipsy::router()
 			echo "No WEBHOOK_SECRET.\n";
 			$error = true;
 		}
-		$sig = hash_hmac('sha1', $Request->_rawRequest, $key, false);
+		$sig = hash_hmac('sha1', $Request->content(), $key, false);
 		if ('sha1='.$sig != $Request->headers()['X-Hub-Signature']) {
-			print_r($Request);
+			print_r($Request->content());
 			echo $Request->_rawRequest."\n";
 			echo $sig." < secret\n";
 			echo $Request->headers()['X-Hub-Signature']." < replace\n";
