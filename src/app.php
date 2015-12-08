@@ -27,10 +27,10 @@ Tipsy::router()
 			echo "No WEBHOOK_SECRET.\n";
 			$error = true;
 		}
-		if (sha1($secret) != str_replace('sha1=','',$Request->headers()['x-hub-signature'])) {
+		if (sha1($secret) != str_replace('sha1=','',$Request->headers()['X-Hub-Signature'])) {
 			print_r($Request->headers());
-			echo $Request->headers()['x-hub-signature']." < sig\n";
-			echo str_replace('sha1=','',$Request->headers()['x-hub-signature'])." < replace\n";
+			echo $Request->headers()['X-Hub-Signature']." < sig\n";
+			echo str_replace('sha1=','',$Request->headers()['X-Hub-Signature'])." < replace\n";
 			echo "Invalid WEBHOOK_SECRET.\n";
 			$error = true;
 		}
