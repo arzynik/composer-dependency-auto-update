@@ -7,9 +7,15 @@ use Tipsy\Tipsy;
 Tipsy::router()
 	->post('hook', function($Params, $Request) {
 		$package = $_ENV['PACKAGE_NAME'] ? $_ENV['PACKAGE_NAME'] : ($this->tipsy()->config()['update']['package'] ? $this->tipsy()->config()['update']['package'] : $Request->repository->full_name);
+		$email = $_ENV['GITHUB_EMAIL'] ? $_ENV['GITHUB_EMAIL'] : $this->tipsy()->config()['update']['email'];
+		$name = $_ENV['GITHUB_NAME'] ? $_ENV['GITHUB_NAME'] : $this->tipsy()->config()['update']['name'];
 
+		$cmds[] = 'rm -Rf /tmp/repos';
 		$cmds[] = 'mkdir /tmp/repos';
+		$cmds[] = 'git config --global user.email "'.$email.'"';
+		$cmds[] = 'git config --global user.name "'.$name.'"';
 		$x = 1;
+
 		foreach ($_ENV as $k => $v) {
 			if (preg_match('/^GITHUB_REPO[0-9]+$/', $k)) {
 				$cmds[] = 'git clone '.$v.' /tmp/repos/'.$x;
@@ -20,6 +26,8 @@ Tipsy::router()
 			}
 			$x++;
 		}
+
+		$cmds[] = 'rm -Rf /tmp/repos';
 
 		foreach ($cmds as $cmd) {
 			echo shell_exec($cmd.' 2>&1')."\n";
