@@ -28,8 +28,7 @@ Tipsy::router()
 			$error = true;
 		}
 		if (sha1($secret) != str_replace('sha1=','',$Request->headers()['X-Hub-Signature'])) {
-			print_r($Request->headers());
-			echo $Request->headers()['X-Hub-Signature']." < sig\n";
+			echo sha1($secret)." < secret\n";
 			echo str_replace('sha1=','',$Request->headers()['X-Hub-Signature'])." < replace\n";
 			echo "Invalid WEBHOOK_SECRET.\n";
 			$error = true;
