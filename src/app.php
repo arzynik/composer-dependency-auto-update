@@ -23,12 +23,13 @@ Tipsy::router()
 			echo "No GITHUB_NAME.\n";
 			$error = true;
 		}
-		if (!$secret) {
+		if (!$key) {
 			echo "No WEBHOOK_SECRET.\n";
 			$error = true;
 		}
 		$sig = hash_hmac('sha1', $Request->_rawRequest, $key, false);
 		if ('sha1='.$sig != $Request->headers()['X-Hub-Signature']) {
+			echo $Request->_rawRequest."\n";
 			echo $sig." < secret\n";
 			echo $Request->headers()['X-Hub-Signature']." < replace\n";
 			echo "Invalid WEBHOOK_SECRET.\n";
