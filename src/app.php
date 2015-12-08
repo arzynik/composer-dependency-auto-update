@@ -21,6 +21,7 @@ Tipsy::router()
 				$cmds[] = 'git clone '.$v.' /tmp/repos/'.$x;
 				$dir = 'cd /tmp/repos/'.$x.' && ';
 				$cmds[] = $dir.'composer update '.$package.' --optimize-autoloader';
+				$cmds[] = $dir.'git status -s';
 				$cmds[] = $dir.'git add -A';
 				$cmds[] = $dir.'git commit -m "Automatic dependency update for '.$package.'"';
 			}
