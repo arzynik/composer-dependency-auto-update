@@ -9,6 +9,32 @@ Tipsy::router()
 		$package = $_ENV['PACKAGE_NAME'] ? $_ENV['PACKAGE_NAME'] : ($this->tipsy()->config()['update']['package'] ? $this->tipsy()->config()['update']['package'] : $Request->repository->full_name);
 		$email = $_ENV['GITHUB_EMAIL'] ? $_ENV['GITHUB_EMAIL'] : $this->tipsy()->config()['update']['email'];
 		$name = $_ENV['GITHUB_NAME'] ? $_ENV['GITHUB_NAME'] : $this->tipsy()->config()['update']['name'];
+		$secret = $_ENV['WEBHOOK_SECRET'] ? $_ENV['WEBHOOK_SECRET'] : $this->tipsy()->config()['update']['secret'];
+
+		if (!$package) {
+			echo "No PACKAGE_NAME(".$Request->repository->full_name.").\n";
+			$error = true;
+		}
+		if (!$email) {
+			echo "No GITHUB_EMAIL.\n";
+			$error = true;
+		}
+		if (!$name) {
+			echo "No GITHUB_NAME.\n";
+			$error = true;
+		}
+		if (!$secret) {
+			echo "No WEBHOOK_SECRET.\n";
+			$error = true;
+		}
+		if (sha1($secret) != $secret) {
+			echo "Invalid WEBHOOK_SECRET.\n";
+			$error = true;
+		}
+
+		if ($error) {
+			exit;
+		}
 
 		$cmds[] = 'rm -Rf /tmp/repos';
 		$cmds[] = 'mkdir /tmp/repos';
