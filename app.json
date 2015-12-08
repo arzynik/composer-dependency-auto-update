@@ -1,0 +1,11 @@
+{
+	name: "Composer Dependency Auto Update",
+	description: "Automagicly update specified dependencies when their master repositories update",
+	website: "http://tipsy.la",
+	repository: "https://github.com/arzynik/composer-dependency-auto-update",
+	keywords: [
+		"tipsy",
+		"composer",
+		"dependency"
+	]
+}
