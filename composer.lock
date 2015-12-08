@@ -4,14 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0315ecdc88344d2088b0224c99b64117",
-    "content-hash": "c3a148b65a9b1af6ac1d54a64115abd8",
-    "packages": [],
+    "hash": "cc631f84a922e65dac610febede16dcc",
+    "content-hash": "c15d6e921d8286c694ab14e2ba47ae50",
+    "packages": [
+        {
+            "name": "arzynik/tipsy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/arzynik/tipsy.git",
+                "reference": "130bf2a26c6f7b5acf63c9e6e99d5a2102f0cd1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/arzynik/tipsy/zipball/130bf2a26c6f7b5acf63c9e6e99d5a2102f0cd1a",
+                "reference": "130bf2a26c6f7b5acf63c9e6e99d5a2102f0cd1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tipsy\\": "src/"
+                },
+                "files": [
+                    "src/Tipsy.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Devin Smith",
+                    "email": "devin@tipsy.la",
+                    "homepage": "http://devin.la",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An MVW PHP framework",
+            "keywords": [
+                "framework",
+                "mvc",
+                "mvw",
+                "php"
+            ],
+            "time": "2015-12-08 06:14:03"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "php": 10
+        "php": 10,
+        "arzynik/tipsy": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

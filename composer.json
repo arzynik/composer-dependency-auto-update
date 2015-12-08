@@ -1,5 +1,6 @@
 {
 	"require": {
-		"php": "~7.0@beta"
+		"php": "~7.0@beta",
+		"arzynik/tipsy": "dev-master"
 	}
 }
