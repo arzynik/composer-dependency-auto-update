@@ -6,13 +6,13 @@ use Tipsy\Tipsy;
 
 Tipsy::router()
 	->post('hook', function($Params, $Request) {
-		$package = $_ENV['PACKAGE_NAME'] ? $_ENV['PACKAGE_NAME'] : ($this->tipsy()->config()['update']['package'] ? $this->tipsy()->config()['update']['package'] : $Request->repository->full_name);
+		$package = $_ENV['PACKAGE_NAME'] ? $_ENV['PACKAGE_NAME'] : ($this->tipsy()->config()['update']['package'] ? $this->tipsy()->config()['update']['package'] : $Request->repository['full_name']);
 		$email = $_ENV['GITHUB_EMAIL'] ? $_ENV['GITHUB_EMAIL'] : $this->tipsy()->config()['update']['email'];
 		$name = $_ENV['GITHUB_NAME'] ? $_ENV['GITHUB_NAME'] : $this->tipsy()->config()['update']['name'];
 		$secret = $_ENV['WEBHOOK_SECRET'] ? $_ENV['WEBHOOK_SECRET'] : $this->tipsy()->config()['update']['secret'];
 
 		if (!$package) {
-			echo "No PACKAGE_NAME(".$Request->repository['full_name'].").\n";
+			echo "No PACKAGE_NAME.\n";
 			$error = true;
 		}
 		if (!$email) {
@@ -28,6 +28,7 @@ Tipsy::router()
 			$error = true;
 		}
 		if (sha1($secret) != str_replace('sha1=','',$Request->headers()['x-hub-signature'])) {
+			print_r($Request->headers());
 			echo $Request->headers()['x-hub-signature']." < sig\n";
 			echo str_replace('sha1=','',$Request->headers()['x-hub-signature'])." < replace\n";
 			echo "Invalid WEBHOOK_SECRET.\n";
@@ -35,6 +36,7 @@ Tipsy::router()
 		}
 
 		if ($error) {
+			http_response_code(500);
 			exit;
 		}
 
