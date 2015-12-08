@@ -6,5 +6,27 @@
 		"tipsy",
 		"composer",
 		"dependency"
-	]
+	],
+	"env": {
+		"PACKAGE_NAME": {
+			"description": "The packagist package name. Defaults to github repo name",
+			"required": false,
+			"value": ""
+		},
+		"GITHUB_EMAIL": {
+			"description": "Email on your github account",
+			"required": true,
+			"value": ""
+		},
+		"GITHUB_NAME": {
+			"description": "Name on your github account",
+			"required": true,
+			"value": ""
+		},
+		"WEBHOOK_SECRET": {
+			"description": "Secret key for your webhook",
+			"required": true,
+			"value": ""
+		}
+	}
 }
