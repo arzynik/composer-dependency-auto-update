@@ -11,7 +11,7 @@ Tipsy::router()
 		$cmds[] = 'mkdir /tmp/repos';
 		$x = 1;
 		foreach ($_ENV as $k => $v) {
-			if (preg_match('/^GITHUB_REPO[0-9]+$', $k)) {
+			if (preg_match('/^GITHUB_REPO[0-9]+/$', $k)) {
 				$cmds[] = 'git clone '.$v.' /tmp/repos/'.$x;
 				$cmds[] = 'cd /tmp/repos/'.$x;
 				$cmds[] = 'composer update '.$package.' --optimize-autoloader';
