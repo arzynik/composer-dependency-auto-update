@@ -27,6 +27,11 @@
 			"description": "Secret key for your webhook",
 			"required": true,
 			"value": ""
+		},
+		"GITHUB_REPO1": {
+			"description": "A repository to update. You can add more of these later. Make sure your user has write perms.",
+			"required": true,
+			"value": ""
 		}
 	}
 }
