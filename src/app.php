@@ -13,10 +13,10 @@ Tipsy::router()
 		foreach ($_ENV as $k => $v) {
 			if (preg_match('/^GITHUB_REPO[0-9]+$/', $k)) {
 				$cmds[] = 'git clone '.$v.' /tmp/repos/'.$x;
-				$cmds[] = 'cd /tmp/repos/'.$x;
-				$cmds[] = 'composer update '.$package.' --optimize-autoloader';
-				$cmds[] = 'git add -A';
-				$cmds[] = 'git commit -m "Automatic dependency update for '.$package.'"';
+				$dir = 'cd /tmp/repos/'.$x.' && ';
+				$cmds[] = $dir.'composer update '.$package.' --optimize-autoloader';
+				$cmds[] = $dir.'git add -A';
+				$cmds[] = $dir.'git commit -m "Automatic dependency update for '.$package.'"';
 			}
 			$x++;
 		}
