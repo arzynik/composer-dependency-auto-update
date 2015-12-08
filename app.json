@@ -1,5 +1,5 @@
 {
-	"name": "Composer Dependency Auto Update",
+	"name": "Dependency Updater",
 	"description": "Automagically update specified dependencies when their master repositories update",
 	"repository": "https://github.com/arzynik/composer-dependency-auto-update",
 	"keywords": [
