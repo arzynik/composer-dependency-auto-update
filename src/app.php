@@ -38,6 +38,16 @@ Tipsy::router()
 			exit;
 		}
 
+		// close connection
+		ignore_user_abort(1);
+		set_time_limit(0);
+		header("Connection: close", true);
+		header("Content-Encoding: none\r\n");
+		header("Content-Length: 0", true);
+
+		flush();
+		ob_flush();
+
 		$cmds[] = 'rm -Rf /tmp/repos';
 		$cmds[] = 'mkdir /tmp/repos';
 		$cmds[] = 'git config --global user.email "'.$email.'"';
